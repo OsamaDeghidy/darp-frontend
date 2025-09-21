@@ -15,33 +15,33 @@ const WhyTrails: FC<IProps> = (props) => {
 	return (
 		<section className="section whyTrails">
 			<div className="container">
-				<SectionTitle text={data.title} className="section-title" />
+				<SectionTitle text={data?.title || ''} className="section-title" />
 				<div className="wh-container grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-					{data.whyWalkingTrailsList.map((trail, index) => (
+					{data?.whyWalkingTrailsList?.map((trail, index) => (
 						<article
 							key={index}
 							className="wh-card px-[15px] py-[20px]"
-							aria-labelledby={trail.title}
+							aria-labelledby={trail?.title || ''}
 						>
 							<figure className="wh-image text-center">
 								<Image
 									className="m-auto mb-[10px]"
 									width={70}
 									height={70}
-									alt={trail.title}
-									src={trail.image.url}
+									alt={trail?.title || ''}
+									src={trail?.image?.url || ''}
 									sizes="100vw"
 								/>
 								<figcaption className="sr-only">
-									{trail.title}
+									{trail?.title || ''}
 								</figcaption>
 							</figure>
 							<BodyText18B
-								text={trail.title}
+								text={trail?.title || ''}
 								className="wh-title text-center mb-[5px]"
 							/>
 							<BodyText16R
-								text={trail.description}
+								text={trail?.description || ''}
 								className="wh-text text-center"
 							/>
 						</article>

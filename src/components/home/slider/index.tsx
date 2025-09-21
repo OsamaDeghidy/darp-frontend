@@ -25,7 +25,7 @@ export const SliderWrapper: FC<IProps> = (props) => {
 
 	return (
 		<section className="relative">
-			<MainSearch title={data[0]?.title} />
+			<MainSearch title={data?.[0]?.title || ''} />
 			<MainSlider slides={data} settings={sliderSettings} />
 		</section>
 	);

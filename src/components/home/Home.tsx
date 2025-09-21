@@ -19,11 +19,11 @@ const Home: FC<IProps> = (props) => {
 	const t = useI18n();
 	return (
 		<>
-			<SliderWrapper data={data.homeMainSlider} />
-			<WhyTrails data={data.whyWalkingTrails} />
-			<HomeMap data={data.kingdomTracks} />
-			<Statistics data={data.beneficiaries} />
-			{data.beneficiaries?.youtubeVideoUrl && (
+			{data?.homeMainSlider && <SliderWrapper data={data.homeMainSlider} />}
+			{data?.whyWalkingTrails && <WhyTrails data={data.whyWalkingTrails} />}
+			{data?.kingdomTracks && <HomeMap data={data.kingdomTracks} />}
+			{data?.beneficiaries && <Statistics data={data.beneficiaries} />}
+			{data?.beneficiaries?.youtubeVideoUrl && (
 				<YoutubeVideo
 					title="home video"
 					className="home-video"
@@ -31,9 +31,9 @@ const Home: FC<IProps> = (props) => {
 					url={data.beneficiaries.youtubeVideoUrl}
 				/>
 			)}
-			<HomeNews data={data.latestNews} />
-			<Tweets data={data.twitter} />
-			<DownloadApp data={data.downloadApp} />
+			{data?.latestNews && <HomeNews data={data.latestNews} />}
+			{data?.twitter && <Tweets data={data.twitter} />}
+			{data?.downloadApp && <DownloadApp data={data.downloadApp} />}
 		</>
 	);
 };

@@ -23,17 +23,17 @@ const HomeNews: FC<IProps> = (props) => {
 					className="text-right text-white"
 				/>
 				<div className="grid grid-cols-12 gap-[24px] mb-[30px]">
-					{data.slice(0, 3).map((item, index) => (
+					{data?.slice(0, 3)?.map((item, index) => (
 						<SurveyCard
 							key={index}
-							link={HRef.news + '/' + item.id}
+							link={HRef.news + '/' + item?.id}
 							className={
 								'lg:col-span-4 md:col-span-6 col-span-12 min-h-[300px] h-full'
 							}
-							image={item.image.url}
-							title={item.title}
+							image={item?.image?.url || ''}
+							title={item?.title || ''}
 							linkName={t('readMore')}
-							date={item.createdAt}
+							date={item?.createdAt}
 							article={false}
 						/>
 					))}

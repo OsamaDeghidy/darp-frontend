@@ -56,12 +56,12 @@ const Tweets: FC<IProps> = (props) => {
 		<section className="section ">
 			<div className="container">
 				<SectionTitle
-					text={data.title}
+					text={data?.title || ''}
 					className="text-center section-title"
 				/>
 
 				<Slider className="twitter-slider relative" {...settings}>
-					{data.twitterList.map((slide, index) => (
+					{data?.twitterList?.map((slide, index) => (
 						<article
 							key={index}
 							className="tweet-item relative w-full min-h-[200px] h-full"
@@ -76,7 +76,7 @@ const Tweets: FC<IProps> = (props) => {
 								{/*/>*/}
 								<figure className="image mx-auto relative h-[150px] w-[250px]">
 									<Image
-										src={slide.image.url}
+										src={slide?.image?.url || ''}
 										fill
 										alt="Darb Logo"
 										className="object-contain"

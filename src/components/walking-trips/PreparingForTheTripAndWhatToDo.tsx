@@ -32,9 +32,11 @@ const PreparingForTheTripAndWhatToDo: FC<IProps> = (props) => {
 	}
 
 	useEffect(() => {
-		const paragraph = data.preparingForHikingTripsItems[0].content;
-		const resultArray = splitParagraphIntoListItems(paragraph);
-	}, [data.preparingForHikingTripsItems]);
+		if (data?.preparingForHikingTripsItems?.[0]?.content) {
+			const paragraph = data.preparingForHikingTripsItems[0].content;
+			const resultArray = splitParagraphIntoListItems(paragraph);
+		}
+	}, [data?.preparingForHikingTripsItems]);
 
 	return (
 		<section
@@ -42,10 +44,10 @@ const PreparingForTheTripAndWhatToDo: FC<IProps> = (props) => {
 				'border rounded-[10px] p-[25px] b-c_F1F2EC mb-[15px] bg-c_white'
 			}
 		>
-			{data.preparingForHikingTripsItems.map((item, index) => (
+			{data?.preparingForHikingTripsItems?.map((item, index) => (
 				<div key={index}>
 					<h2 className={'mb-[20px] c_004053 f-32-700'}>
-						{item.title}
+						{item?.title || ''}
 					</h2>
 					<div
 						className={
@@ -54,7 +56,7 @@ const PreparingForTheTripAndWhatToDo: FC<IProps> = (props) => {
 					>
 						<Image
 							fill
-							src={item.image?.url}
+							src={item?.image?.url || ''}
 							alt={''}
 							className={'object-cover '}
 						/>

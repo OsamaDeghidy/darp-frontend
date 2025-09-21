@@ -25,35 +25,35 @@ const DownloadApp: FC<IProps> = (props) => {
 					<div className="md:col-span-6 col-span-12">
 						<div className="download-content">
 							<SectionTitle
-								text={data.title}
+								text={data?.title || ''}
 								className="section-title !text-right"
 							/>
 							<BodyText20SB
-								text={data.description}
+								text={data?.description || ''}
 								className="mb-[20px]"
 							/>
 							<div className="flex items-center gap-[24px]">
 								<Link
 									aria-label="download it now"
-									href={data.link}
+									href={data?.link || '#'}
 									target="_blank"
 									className={
 										'btn btn-primary !rounded-[10px] !flex items-center gap-[5px]'
 									}
 								>
 									<PlayIcon className="inline-block" />
-									{data.downloadButtonText}
+									{data?.downloadButtonText || ''}
 								</Link>
 								<Link
 									aria-label="download it now"
-									href={data.linkAppStore}
+									href={data?.linkAppStore || '#'}
 									target="_blank"
 									className={
 										'btn btn-primary !rounded-[10px] !flex items-center gap-[5px]'
 									}
 								>
 									<AppStoreIcon className="inline-block h-[20px] w-[20px]" />
-									{data.downloadButtonTextAppStore}
+									{data?.downloadButtonTextAppStore || ''}
 								</Link>
 							</div>
 						</div>
@@ -62,12 +62,12 @@ const DownloadApp: FC<IProps> = (props) => {
 						<Image
 							className="m-auto mt-5 md:mt-0"
 							alt="Download the mobile app"
-							src={data.image.url}
+							src={data?.image?.url || ''}
 							width={429}
 							height={526}
 						/>
 						<figcaption className="sr-only">
-							{data.title}
+							{data?.title || ''}
 						</figcaption>
 					</figure>
 				</div>

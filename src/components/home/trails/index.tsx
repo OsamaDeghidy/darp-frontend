@@ -18,7 +18,7 @@ const HomeMap: FC<IProps> = (props) => {
 	return (
 		<section className="section">
 			<SectionTitle
-				text={data.title}
+				text={data?.title || ''}
 				className="section-title text-center"
 			/>
 			{isLoading ? (
