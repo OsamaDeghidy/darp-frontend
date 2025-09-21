@@ -1,0 +1,22 @@
+import { FC, SVGProps } from 'react';
+
+interface IProps extends SVGProps<SVGSVGElement> {}
+
+const StarIcon: FC<IProps> = (props) => {
+    return (
+        <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            {...props}
+        >
+            <path
+                d="M3.64062 13.75L4.65625 9.35938L1.25 6.40625L5.75 6.01562L7.5 1.875L9.25 6.01562L13.75 6.40625L10.3438 9.35938L11.3594 13.75L7.5 11.4219L3.64062 13.75Z"
+                fill="#F47B3D"
+            />
+        </svg>
+    );
+};
+export default StarIcon;

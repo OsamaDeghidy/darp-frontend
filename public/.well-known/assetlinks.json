@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "org.mmd.darb",
+      "sha256_cert_fingerprints": [
+        "17:5A:14:7A:15:EA:56:61:11:8D:87:D1:D7:62:DE:F9:CE:E2:7C:14:C1:96:E3:28:32:6D:F4:6C:CB:B3:3F:18",
+        "F3:FA:84:45:28:94:A4:20:19:74:E9:BB:EB:EF:32:D8:25:47:3E:83:E5:7E:92:98:84:ED:67:48:F3:1A:8D:13"
+      ]
+    }
+  }
+]

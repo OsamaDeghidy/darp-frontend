@@ -1,0 +1,36 @@
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next';
+import VideosLibrary from '@/src/components/media-center/VideosLibrary';
+import withEveryone from '@/src/hooks/auth/withEveryone';
+import { wrapper } from '@/src/store';
+import { mediaCenterApi } from '@/src/store/RTKQuery/media-center/mediaCenterApi';
+import MainLayout from '@/src/components/ui/layouts/base/MainLayout';
+import { useI18n } from '@/src/locales';
+
+const VideosLibraryPage: NextPage = ({
+	pageProps,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	const t = useI18n();
+	return (
+		<MainLayout
+			title={t('pageName', { name: t('videoLibrary') })}
+			name={pageProps.data.mainTitle}
+			mainImage={pageProps.data.mainImage?.url}
+			header={pageProps.data.header}
+			footer={pageProps.data.footer}
+			seo={pageProps.data.seo}
+		>
+			<VideosLibrary data={pageProps.data} />
+		</MainLayout>
+	);
+};
+export const getServerSideProps: GetServerSideProps = withEveryone(
+	wrapper.getServerSideProps((store) => async (context) => {
+		const data = await store.dispatch(
+			mediaCenterApi.endpoints?.getVideoLibrary.initiate(),
+		);
+		return {
+			props: { data: data.data?.data },
+		};
+	}),
+);
+export default VideosLibraryPage;

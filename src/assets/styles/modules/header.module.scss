@@ -1,0 +1,95 @@
+.top-nav {
+    background-color: var(--brand-primary);
+
+    .tn-content {
+        > a {
+        }
+
+        .tn-social {
+        }
+
+        .tn-item {
+        }
+    }
+}
+
+.navbar {
+    .navbar-start {
+        max-width: 200px;
+        flex: 0 0 200px;
+    }
+
+    .navbar-end {
+        width: 100%;
+
+        .menu {
+            li {
+                summary,
+                a {
+                    font-size: 18px;
+                    font-weight: 600;
+                    line-height: 24px;
+                    color: var(--neutral-black);
+                    padding: 12.5px;
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        background-color: transparent;
+                        color: var(--brand-primary);
+                    }
+                }
+            }
+        }
+
+        .header-action {
+            > div {
+                background: transparent;
+                border: 1px solid var(--brand-primary);
+                padding: 14px;
+
+                svg {
+                    width: 14px;
+                    height: 14px;
+
+                    path {
+                        fill: var(--brand-primary);
+                    }
+                }
+
+                @include hoverFocus {
+                    background-color: var(--brand-primary);
+
+                    svg {
+                        path {
+                            fill: var(--neutral-white);
+                        }
+                    }
+                }
+            }
+
+            .dropdown-content {
+                li {
+                    a {
+                        background-color: transparent;
+                        font-size: 16px;
+                        line-height: 22px;
+                        color: var(--neutral-gray-700, #737373);
+                        padding: 10px;
+                        outline: 0;
+                        border: 0;
+
+                        &.active {
+                            color: var(--brand-primary-color, #f47b3d);
+                        }
+
+                        @include hoverFocus {
+                            outline: 0;
+                            color: var(--brand-primary-color, #f47b3d);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+html {
+	&[dir=ltr] {
+		.arrow2-icon {
+			transform: rotateY(180deg);
+		}
+
+		.arrow-icon {
+			transform: rotateZ(-90deg);
+		}
+
+		.twitter-slider {
+			.slick-next {
+				right: 45px;
+				left: unset;
+
+				svg {
+					transform: rotateZ(-180deg);
+				}
+
+				@media (max-width: 768px) {
+					right: -25px;
+					left: unset;
+
+				}
+			}
+
+			.slick-prev {
+				left: 45px;
+				right: unset;
+
+				svg {
+					transform: rotateZ(-180deg);
+				}
+
+				@media (max-width: 768px) {
+					left: -25px;
+					right: unset;
+
+				}
+			}
+		}
+	}
+}

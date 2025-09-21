@@ -1,0 +1,127 @@
+:root {
+	--brand-primary: #f47b3d;
+	--brand-secondary: #004053;
+	--brand-blue: #9ad6cc;
+	--neutral-black: #000000;
+	--neutral-white: #ffffff;
+	--neutral-stroke: #f1f2ec;
+	--neutral-gray-900: #2d2d2d;
+	--neutral-gray-700: #737373;
+	--neutral-gray-500: #898989;
+	--neutral-gray-100: #cecece;
+	--viewport-desktop: 1200px;
+	--viewport-laptop: 990px;
+	--viewport-tablet: 768px;
+	--viewport-mobile: 576px;
+	--primary-font-ar: Cairo;
+	--primary-font-en: Roboto;
+	--_EDF4F2: #EDF4F2;
+	--_white: #fff;
+	--_black: #000;
+	--_004053: #004053;
+	--_CECECE: #CECECE;
+	--_2D2D2D: #2D2D2D;
+	--_898989: #898989;
+	--_E5E5E5: #E5E5E5;
+	--_F47B3D: #F47B3D;
+	--_9A9A9A: #9A9A9A;
+	--_F1F2EC: #F1F2EC;
+	--_737373: #737373;
+	--_00313F: #00313F;
+	--_003949: #003949;
+	--_9AD6CC: #9AD6CC;
+	--_F6F6F6: #F6F6F6;
+	--_F8F8F8: #F8F8F8;
+	--_ADADAD: #ADADAD;
+	--_F60505: #F60505;
+	--_535353: #535353;
+	--_EB0000: #EB0000;
+	--_E5252A0D: #E5252A0D;
+	--_C4C4C4: #C4C4C4;
+	--_FAFDFC: #FAFDFC;
+	--_32BEA6: #32BEA6;
+	--_warning: #ff0f0f;
+	--_3377F2: #3377F2;
+	--_E5252A: #E5252A;
+	--_9AD6CC2: #9AD6CC24;
+
+}
+
+[data-theme='dark'] {
+	--bg-color: red;
+	--primary-color: green;
+}
+
+$colors: _EDF4F2,
+_white,
+_black,
+_004053,
+_CECECE,
+_2D2D2D,
+_898989,
+_E5E5E5,
+_F47B3D,
+_9A9A9A,
+_F1F2EC,
+_737373,
+_00313F,
+_003949,
+_F6F6F6,
+_F8F8F8,
+_ADADAD,
+_F60505,
+_535353,
+_EB0000,
+_9AD6CC,
+_E5252A0D,
+_FAFDFC,
+_C4C4C4,
+_32BEA6,
+_warning _3377F2;
+
+@each $color in $colors {
+	.c#{$color} {
+		color: var(--#{$color});
+	}
+	.bg-c#{$color} {
+		background-color: var(--#{$color});
+	}
+	.b-c#{$color} {
+		border-color: var(--#{$color}) !important;
+	}
+	.fill-c#{$color} {
+		path,
+		rect {
+			fill: var(--#{$color});
+		}
+	}
+	.stroke-c#{$color} {
+		path,
+		rect {
+			stroke: var(--#{$color});
+		}
+	}
+
+	.h-c#{$color} {
+		&:hover {
+			color: var(--#{$color});
+		}
+	}
+	.h-bg-c#{$color} {
+		&:hover {
+			background-color: var(--#{$color});
+		}
+	}
+	.h-c#{$color} {
+		&:hover {
+			border-color: var(--#{$color});
+		}
+	}
+	.h-fill-c#{$color} {
+		&:hover {
+			path {
+				fill: var(--#{$color});
+			}
+		}
+	}
+}
