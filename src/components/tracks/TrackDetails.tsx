@@ -64,45 +64,45 @@ const TrackDetails: FC<IProps> = (props) => {
 	return (
 		<section className="section track-details">
 			<div className="container">
-				<h1 className={'mb-[20px] c_004053 f-32-700'}>{data.title}</h1>
+				<h1 className={'mb-[20px] c_004053 f-32-700'}>{data?.title || ''}</h1>
 				<div className="description border rounded-[10px] p-[20px] bg-c_white">
 					<p
-						dangerouslySetInnerHTML={{ __html: data.description }}
+						dangerouslySetInnerHTML={{ __html: data?.description || '' }}
 					></p>
 				</div>
 				<div className="trail-meta grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 border rounded-[10px] p-[20px] mt-[20px] bg-c_white">
 					<div className="trail-data flex items-center">
 						<PlaceIcon className="inline-block ml-2" />
 						<span className="ml-1">{t('region')}:</span>
-						<span className="font-bold">{data.region?.title}</span>
+						<span className="font-bold">{data?.region?.title || ''}</span>
 					</div>
 					<div className="trail-data flex items-center">
 						<MarkerIcon className="inline-block ml-2" />
 						<span className="ml-1">{t('city')}:</span>
-						<span className="font-bold">{data.city?.title}</span>
+						<span className="font-bold">{data?.city?.title || ''}</span>
 					</div>
 					<div className="trail-data flex items-center">
 						<DistanceIcon className="inline-block ml-2" />
 						<span className="ml-1">{t('distance')}:</span>
-						<span className="font-bold">{data.length}</span>
+						<span className="font-bold">{data?.length || ''}</span>
 					</div>
 					<div className="trail-data flex items-center">
 						<TrackIcon className="inline-block ml-2" />
 						<span className="ml-1">{t('howDifficultItIs')}:</span>
 						<span className="font-bold">
-							{data.difficulty?.title}
+							{data?.difficulty?.title || ''}
 						</span>
 					</div>
 					<div className="trail-data flex items-center">
 						<TimeIcon className="inline-block ml-2" />
 						<span className="ml-1">{t('duration')}:</span>
-						<span className="font-bold">{data.duration}</span>
+						<span className="font-bold">{data?.duration || ''}</span>
 					</div>
 					<div className="trail-data flex items-center">
 						<Height2Icon className="inline-block ml-2" />
 						<span className="ml-1">{t('HeightGainedOrLost')}:</span>
 						<span className="font-bold">
-							{data.heightGainedOrLost}
+							{data?.heightGainedOrLost || ''}
 						</span>
 					</div>
 					<div className="trail-data flex items-center">
@@ -111,7 +111,7 @@ const TrackDetails: FC<IProps> = (props) => {
 							{t('HighestElevationAboveSeaLevel')}:
 						</span>
 						<span className="font-bold">
-							{data.highestElevationAboveSeaLevel}
+							{data?.highestElevationAboveSeaLevel || ''}
 						</span>
 					</div>
 					<div className="trail-data flex items-center">
@@ -120,7 +120,7 @@ const TrackDetails: FC<IProps> = (props) => {
 							{t('LowestElevationAboveSeaLevel')}:
 						</span>
 						<span className="font-bold">
-							{data.minimumHeightAboveSeaLevel}
+							{data?.minimumHeightAboveSeaLevel || ''}
 						</span>
 					</div>
 				</div>

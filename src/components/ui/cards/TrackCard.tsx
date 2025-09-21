@@ -135,35 +135,35 @@ const TrackCard: FC<IProps> = (props) => {
 							HRef.tracks + '/' + data.id + '/' + data.trackType
 						}
 					>
-						<h2 className={'f-18-700 c_F47B3D'}>{data.title}</h2>
+						<h2 className={'f-18-700 c_F47B3D'}>{data?.title || ''}</h2>
 					</Link>
 					<p
 						className={
 							'mb-[10px] f-14-500 c_black  line-clamp-3 min-h-[54px] ]'
 						}
 						dangerouslySetInnerHTML={{
-							__html: data.description,
+							__html: data?.description || '',
 						}}
 					></p>
 					<div className="flex gap-x-[10px]">
 						<ul className="flex gap-2 flex-col">
 							<li>
 								<PlaceIcon />
-								<span>{data.region?.title}</span>
+								<span>{data?.region?.title || ''}</span>
 							</li>
 							<li>
 								<TrackIcon />
-								<span>{data.difficulty?.title}</span>
+								<span>{data?.difficulty?.title || ''}</span>
 							</li>
 						</ul>
 						<ul className="flex gap-2 flex-col">
 							<li>
 								<DistanceIcon />
-								<span>{data.length}</span>
+								<span>{data?.length || ''}</span>
 							</li>
 							<li>
 								<TimeIcon />
-								<span>{data.duration}</span>
+								<span>{data?.duration || ''}</span>
 							</li>
 						</ul>
 					</div>

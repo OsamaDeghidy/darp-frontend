@@ -37,22 +37,22 @@ const VideosLibraryModal: React.FC<IProps> = (props) => {
 			destroyOnClose={true}
 		>
 			<h2 className="text-center f-32-700 mb-[20px] c_white">
-				{data.title}
+				{data?.title || ''}
 			</h2>
 			<span
 				className={
 					'f-16-500 c_white text-center block w-[90%] mb-[30px]'
 				}
 			>
-				{data.description}
+				{data?.description || ''}
 			</span>
-			{data.videoYoutubeLink && (
+			{data?.videoYoutubeLink && (
 				<div className={'Video-wrapper rounded-[10px]'}>
 					<YoutubeVideo
 						className={'modal-video rounded-[10px]'}
 						image={ImageLibraryCard.src}
 						title={''}
-						url={data.videoYoutubeLink}
+						url={data?.videoYoutubeLink || ''}
 					/>
 				</div>
 			)}

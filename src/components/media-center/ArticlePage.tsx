@@ -39,12 +39,12 @@ const ArticlePage: FC<IProps> = (props) => {
 				<div className={'with-aside-container ' + direction}>
 					<article className="article-page__content with-aside__content">
 						<h1 className={'f-40-800 c_004053 mb-[20px] mt-[30px]'}>
-							{data.title}
+							{data?.title || ''}
 						</h1>
 						<p className={'flex items-center gap-[10px] mb-[20px]'}>
 							<Time2Icon className={'fill-c_898989'} />
 							<span className={'f-14-600 c_898989'}>
-								{dayjs(data.createdAt).fromNow()}
+								{dayjs(data?.createdAt).fromNow()}
 							</span>
 						</p>
 						<figure className="image-container relative w-full h-[510px] rounded-[10px] mb-[15px]">
@@ -53,11 +53,11 @@ const ArticlePage: FC<IProps> = (props) => {
 									'object-cover w-full rounded-[10px] h-full'
 								}
 								fill={true}
-								src={data.image.url}
-								alt={data.title}
+								src={data?.image?.url || ''}
+								alt={data?.title || ''}
 							/>
 							<figcaption className="sr-only">
-								{data.imageDescription}
+								{data?.imageDescription || ''}
 							</figcaption>
 						</figure>
 						<div className="article-content pb-[20px] mb-[20px] border-b-[1px]  b-c_F1F2EC">
@@ -66,15 +66,15 @@ const ArticlePage: FC<IProps> = (props) => {
 									'f-18-500 c_004053 text-center block mb-[20px]'
 								}
 							>
-								{data.imageDescription}
+								{data?.imageDescription || ''}
 							</span>
 							<div
 								dangerouslySetInnerHTML={{
-									__html: data.content,
+									__html: data?.content || '',
 								}}
 							></div>
 						</div>
-						<Share shareTitle={data.title} shareUrl={''} />
+						<Share shareTitle={data?.title || ''} shareUrl={''} />
 					</article>
 
 					<aside>
