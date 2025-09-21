@@ -46,14 +46,16 @@ const VideosLibraryModal: React.FC<IProps> = (props) => {
 			>
 				{data.description}
 			</span>
-			<div className={'Video-wrapper rounded-[10px]'}>
-				<YoutubeVideo
-					className={'modal-video rounded-[10px]'}
-					image={ImageLibraryCard.src}
-					title={''}
-					url={data.videoYoutubeLink}
-				/>
-			</div>
+			{data.videoYoutubeLink && (
+				<div className={'Video-wrapper rounded-[10px]'}>
+					<YoutubeVideo
+						className={'modal-video rounded-[10px]'}
+						image={ImageLibraryCard.src}
+						title={''}
+						url={data.videoYoutubeLink}
+					/>
+				</div>
+			)}
 		</Modal>
 	);
 };

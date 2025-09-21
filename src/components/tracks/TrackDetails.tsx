@@ -124,12 +124,14 @@ const TrackDetails: FC<IProps> = (props) => {
 						</span>
 					</div>
 				</div>
-				<YoutubeVideo
-					title={t('trackTitle')}
-					className="trail-video mt-[20px] rounded-[10px] overflow-hidden"
-					image="/images/home-video-thumb.jpg"
-					url={data.youtubeVideoUrl}
-				/>
+				{data.youtubeVideoUrl && (
+					<YoutubeVideo
+						title={t('trackTitle')}
+						className="trail-video mt-[20px] rounded-[10px] overflow-hidden"
+						image="/images/home-video-thumb.jpg"
+						url={data.youtubeVideoUrl}
+					/>
+				)}
 				<DetailsTitle text={t('trailImages')} className="mt-[30px]" />
 				<TrackDetailsSliderWithThumb
 					slides={data.images}

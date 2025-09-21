@@ -23,12 +23,14 @@ const Home: FC<IProps> = (props) => {
 			<WhyTrails data={data.whyWalkingTrails} />
 			<HomeMap data={data.kingdomTracks} />
 			<Statistics data={data.beneficiaries} />
-			<YoutubeVideo
-				title="home video"
-				className="home-video"
-				image="/images/home-video-thumb.jpg"
-				url={data.beneficiaries.youtubeVideoUrl}
-			/>
+			{data.beneficiaries?.youtubeVideoUrl && (
+				<YoutubeVideo
+					title="home video"
+					className="home-video"
+					image="/images/home-video-thumb.jpg"
+					url={data.beneficiaries.youtubeVideoUrl}
+				/>
+			)}
 			<HomeNews data={data.latestNews} />
 			<Tweets data={data.twitter} />
 			<DownloadApp data={data.downloadApp} />

@@ -29,12 +29,11 @@ const YoutubeVideo: React.FC<IVideo> = ({
 		}
 	}, [stop]);
 	useEffect(() => {
-		if (url) {
+		if (url && url.trim() !== '') {
 			const match = url.match(regExp);
 			if (match && match[1]) {
 				const videoId = match[1];
 				setId(videoId);
-			} else {
 			}
 		}
 	}, [url]);
@@ -68,6 +67,11 @@ const YoutubeVideo: React.FC<IVideo> = ({
 			setIsPlaying(false);
 		}
 	}, [isPlaying]);
+
+	// Don't render if no valid URL or video ID
+	if (!url || url.trim() === '' || !id) {
+		return null;
+	}
 
 	return (
 		<div
