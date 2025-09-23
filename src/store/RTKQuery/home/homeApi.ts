@@ -9,7 +9,7 @@ export const homeApi = createApi({
 	endpoints: (build) => ({
 		getHome: build.query<IResponseModel<IHomeModel>, Partial<void>>({
 			query: (data) => ({
-				url: 'home-page',
+				url: 'simple-data/home-page',
 			}),
 		}),
 	}),
