@@ -31,7 +31,7 @@ export const TrackDetailsSlider: React.FC<ISlider> = (props) => {
 						alt={''}
 						src={slide.url}
 						sizes="100vw"
-						objectFit="cover"
+						style={{ objectFit: 'cover' }}
 					/>
 				</div>
 			))}
@@ -75,7 +75,7 @@ export const TrackDetailsSliderWithThumb: React.FC<ISlider> = ({
 								alt={''}
 								src={slide.url}
 								sizes="100vw"
-								objectFit="cover"
+								style={{ objectFit: 'cover' }}
 							/>
 						</div>
 					))}
@@ -97,7 +97,7 @@ export const TrackDetailsSliderWithThumb: React.FC<ISlider> = ({
 								alt={''}
 								src={slide.url}
 								sizes="100vw"
-								objectFit="cover"
+								style={{ objectFit: 'cover' }}
 							/>
 						</div>
 					))}

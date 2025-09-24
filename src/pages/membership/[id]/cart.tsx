@@ -11,12 +11,19 @@ const MembershipCartPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<MainLayout
 			title={t('pageName', { name: t('cart') })}
-			header={pageProps.page.header}
-			footer={pageProps.page.footer}
-			seo={pageProps.page.seo}
+			header={pageProps.page?.header}
+			footer={pageProps.page?.footer}
+			seo={pageProps.page?.seo}
 		>
 			<MembershipCart
 				data={pageProps.data}
@@ -44,9 +51,9 @@ export const getServerSideProps: GetServerSideProps = withAuth(
 
 		return {
 			props: {
-				data: data.data?.data,
-				membershipList: membershipList.data?.data,
-				page: page.data?.data,
+				data: data.data?.data || null,
+				membershipList: membershipList.data?.data || null,
+				page: page.data?.data || null,
 			},
 		};
 	}),

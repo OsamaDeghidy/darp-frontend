@@ -13,15 +13,19 @@ const PolicyPage: NextPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
 
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+
 	return (
 		<MainLayout
 			title={t('pageName', { name: t('survey') })}
-			name={pageProps.data.title}
-			header={pageProps.page.header}
-			footer={pageProps.page.footer}
-			seo={pageProps.page.seo}
+			name={data?.title}
+			header={page?.header}
+			footer={page?.footer}
+			seo={page?.seo}
 		>
-			<Policy data={pageProps.data} />
+			{data ? <Policy data={data} /> : <div>Loading...</div>}
 		</MainLayout>
 	);
 };
@@ -36,8 +40,8 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 		);
 		return {
 			props: {
-				page: page.data?.data,
-				data: data.data?.data,
+				page: page.data?.data || null,
+				data: data.data?.data || null,
 			},
 		};
 	}),

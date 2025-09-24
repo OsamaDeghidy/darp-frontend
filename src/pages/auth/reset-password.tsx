@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = withoutAuth(
 			commonApi.endpoints?.getPage.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data  || null},
 		};
 	}),
 );

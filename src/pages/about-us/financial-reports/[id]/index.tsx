@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 		);
 
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data || null },
 		};
 	}),
 );

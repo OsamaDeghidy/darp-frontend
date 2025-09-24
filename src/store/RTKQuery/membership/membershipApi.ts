@@ -45,4 +45,9 @@ export const membershipApi = createApi({
 	}),
 });
 
-export const { useCreateHonoraryMembershipMutation } = membershipApi;
+export const { 
+	useGetMembershipPageQuery,
+	useGetMembershipsQuery,
+	useGetMembershipByIdQuery,
+	useCreateHonoraryMembershipMutation 
+} = membershipApi;

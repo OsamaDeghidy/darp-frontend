@@ -31,4 +31,8 @@ export const commonApi = createApi({
 	}),
 });
 
-export const { useGetAuthModalsContentQuery, useGetLookupsQuery } = commonApi;
+export const { 
+	useGetPageQuery,
+	useGetAuthModalsContentQuery, 
+	useGetLookupsQuery 
+} = commonApi;

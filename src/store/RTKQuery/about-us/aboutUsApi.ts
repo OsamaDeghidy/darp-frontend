@@ -146,4 +146,20 @@ export const aboutUsApi = createApi({
 	}),
 });
 
-export const {} = aboutUsApi;
+export const {
+	useGetAboutOrganizationQuery,
+	useGetBoardOfDirectorsQuery,
+	useGetStandingCommitteesQuery,
+	useGetFoundersQuery,
+	useGetExecutiveManagementQuery,
+	useGetFinancialReportsQuery,
+	useGetCouncilMeetingsQuery,
+	useGetCouncilMeetingsByIdQuery,
+	useGetRegulationsAndPoliciesByIdQuery,
+	useGetFinancialReportsByIdQuery,
+	useGetRegulationsAndPoliciesQuery,
+	useGetStrategicDirectionsQuery,
+	useGetMembersOfAssemblyQuery,
+	useGetLicenseCertificateQuery,
+	useGetOrganizationStructureQuery,
+} = aboutUsApi;

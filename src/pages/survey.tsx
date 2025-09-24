@@ -12,16 +12,23 @@ const SurveyPage: NextPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<MainLayout
 			title={t('pageName', { name: t('survey') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
-			seo={pageProps.data.seo}
+			name={pageProps.data?.mainTitle}
+			mainImage={pageProps.data?.mainImage?.url}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
+			seo={pageProps.data?.seo}
 		>
-			<Survey data={pageProps.data.surveyItems} />
+			<Survey data={pageProps.data?.surveyItems} />
 		</MainLayout>
 	);
 };
@@ -31,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			contactUsApi.endpoints?.getSurveyPage.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data  || null},
 		};
 	}),
 );

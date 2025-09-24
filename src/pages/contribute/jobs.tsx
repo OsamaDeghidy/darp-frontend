@@ -12,13 +12,20 @@ const JobsPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<ContributeLayout
 			title={t('pageName', { name: t('jobs') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			name={pageProps.data?.mainTitle}
+			mainImage={pageProps.data?.mainImage?.url}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
@@ -36,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			contactUsApi.endpoints?.getJobsPage.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data  || null},
 		};
 	}),
 );

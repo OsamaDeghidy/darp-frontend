@@ -10,12 +10,19 @@ const MembershipPayPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<MainLayout
 			title={t('pageName', { name: t('payment') })}
-			header={pageProps.page.header}
-			footer={pageProps.page.footer}
-			seo={pageProps.page.seo}
+			header={pageProps.page?.header}
+			footer={pageProps.page?.footer}
+			seo={pageProps.page?.seo}
 		>
 			<MembershipPay />
 		</MainLayout>
@@ -29,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = withAuth(
 
 		return {
 			props: {
-				page: page.data?.data,
+				page: page.data?.data || null,
 			},
 		};
 	}),

@@ -12,12 +12,19 @@ const ChooseAPathPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<WalkingTripsLayout
 			title={t('pageName', { name: t('chooseAPath') })}
 			name={t('chooseAPath')}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
@@ -35,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			commonApi.endpoints?.getPage.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data  || null},
 		};
 	}),
 );

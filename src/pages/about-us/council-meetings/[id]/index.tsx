@@ -27,7 +27,7 @@ const MeetingDetailsPage: NextPage = ({
 };
 export const getServerSideProps: GetServerSideProps = withEveryone(
 	wrapper.getServerSideProps((store) => async (context) => {
-		const id = context.params?.id || '';
+		const { id } = context.query;
 
 		const data = await store.dispatch(
 			aboutUsApi.endpoints?.getCouncilMeetingsById.initiate({
@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 		);
 
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data || null },
 		};
 	}),
 );

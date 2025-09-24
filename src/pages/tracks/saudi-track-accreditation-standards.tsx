@@ -13,14 +13,21 @@ const SaudiTrackAccreditationStandardsPage: NextPage = ({
 															pageProps,
 														}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<TracksLayout
 			title={t('pageName', {
 				name: t('saudiTrackAccreditationStandards'),
 			})}
 			name={t('tracksStandards')}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
@@ -28,7 +35,7 @@ const SaudiTrackAccreditationStandardsPage: NextPage = ({
 				},
 			]}
 		>
-			<SaudiTrackAccreditationStandards data={pageProps.trackStandards.data} />
+			<SaudiTrackAccreditationStandards data={pageProps.trackStandards?.data} />
 		</TracksLayout>
 	);
 };
@@ -42,8 +49,8 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 		);
 		return {
 			props: {
-				data: data.data?.data,
-				trackStandards: trackStandards.data?.data,
+				data: data.data?.data || null,
+				trackStandards: trackStandards.data?.data || null,
 			},
 		};
 	}),

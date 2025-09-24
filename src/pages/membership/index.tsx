@@ -10,19 +10,28 @@ const MembershipPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const membershipList = pageProps.membershipList || null;
+	
 	return (
 		<MainLayout
 			title={t('pageName', { name: t('membership') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
-			seo={pageProps.data.seo}
+			name={data?.mainTitle}
+			mainImage={data?.mainImage?.url}
+			header={data?.header}
+			footer={data?.footer}
+			seo={data?.seo}
 		>
-			<Membership
-				data={pageProps.data}
-				membershipList={pageProps.membershipList}
-			/>
+			{data ? (
+				<Membership
+					data={data}
+					membershipList={membershipList || []}
+				/>
+			) : (
+				<div>Loading...</div>
+			)}
 		</MainLayout>
 	);
 };
@@ -37,8 +46,8 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 
 		return {
 			props: {
-				data: data.data?.data,
-				membershipList: membershipList.data?.data,
+				data: data.data?.data || null,
+				membershipList: membershipList.data?.data || null,
 			},
 		};
 	}),

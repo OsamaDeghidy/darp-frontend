@@ -12,12 +12,19 @@ const TourOperatorsPage: NextPage = ({
 										 pageProps,
 									 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<WalkingTripsLayout
 			title={t('pageName', { name: t('tourOperators') })}
 			name={t('tourOperators')}
-			header={pageProps.data.data.header}
-			footer={pageProps.data.data.footer}
+			header={pageProps.data?.data.header}
+			footer={pageProps.data?.data.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
@@ -25,7 +32,7 @@ const TourOperatorsPage: NextPage = ({
 				},
 			]}
 		>
-			<TourOperators data={pageProps.data.data} />
+			<TourOperators data={pageProps.data?.data} />
 		</WalkingTripsLayout>
 	);
 };

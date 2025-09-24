@@ -13,11 +13,11 @@ const MediaMaterials: NextPage = ({
 	return (
 		<MainLayout
 			title={t('pageName', { name: t('mediaMaterials') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
-			seo={pageProps.data.seo}
+			name={pageProps.data?.mainTitle}
+			mainImage={pageProps.data?.mainImage?.url}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
+			seo={pageProps.data?.seo}
 			
 		>
 			<MediaMaterialsPage data={pageProps.data} />
@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			mediaCenterApi.endpoints?.getMediaMaterials.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data  || null},
 		};
 	}),
 );

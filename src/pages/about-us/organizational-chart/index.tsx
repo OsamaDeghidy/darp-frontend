@@ -15,15 +15,15 @@ const Index: NextPage = ({
 
 	return (
 		<AboutUsLayout
-			title={t('pageName', { name: pageProps.data.mainTitle })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			title={t('pageName', { name: pageProps.data?.mainTitle || t('organizationalChart') })}
+			name={pageProps.data?.mainTitle || ''}
+			mainImage={pageProps.data?.mainImage?.url || ''}
+			header={pageProps.data?.header || null}
+			footer={pageProps.data?.footer || null}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
-					title: pageProps.data.mainTitle,
+					title: pageProps.data?.mainTitle || t('organizationalChart'),
 				},
 			]}
 		>
@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			aboutUsApi.endpoints?.getOrganizationStructure.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data || null },
 		};
 	}),
 );

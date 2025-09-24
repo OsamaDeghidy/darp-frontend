@@ -22,6 +22,7 @@ const nextConfig = {
 	images: {
 		domains: [
 			'darb-be.v4.mmd-technology.com',
+			'darb0org-001-site1.mtempurl.com',
 			'icons.veryicon.com',
 			'mmd-files-dev.s3.eu-west-1.amazonaws.com',
 			'localhost:44380',

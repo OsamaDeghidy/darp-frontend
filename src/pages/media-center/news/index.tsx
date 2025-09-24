@@ -11,18 +11,28 @@ const NewsPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	
 	return (
 		<MainLayout
 			title={t('pageName', { name: t('news') })}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
-			seo={pageProps.data.seo}
+			header={data?.header}
+			footer={data?.footer}
+			seo={data?.seo}
 		>
-			<News
-				data={pageProps.data}
-				mainNews={pageProps.mainNews.items}
-				latestNews={pageProps.latestNews.items}
-			/>
+			{data ? (
+				<News
+					data={data}
+					mainNews={mainNews?.items || []}
+					latestNews={latestNews?.items || []}
+				/>
+			) : (
+				<div>Loading...</div>
+			)}
 		</MainLayout>
 	);
 };
@@ -47,9 +57,9 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 		);
 		return {
 			props: {
-				data: data.data?.data,
-				mainNews: mainNews.data?.data,
-				latestNews: latestNews.data?.data,
+				data: data.data?.data || null,
+				mainNews: mainNews.data?.data || null,
+				latestNews: latestNews.data?.data || null,
 			},
 		};
 	}),

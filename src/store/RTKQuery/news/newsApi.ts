@@ -34,4 +34,8 @@ export const newsApi = createApi({
 	}),
 });
 
-export const { useGetNewsQuery } = newsApi;
+export const { 
+	useGetNewsPageQuery,
+	useGetNewsQuery,
+	useGetNewsDetailsQuery 
+} = newsApi;

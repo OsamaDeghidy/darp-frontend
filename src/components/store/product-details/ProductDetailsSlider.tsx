@@ -92,7 +92,7 @@ const ProductDetailsSlider: FC<IProps> = (props) => {
 								alt={slide.alt}
 								src={slide.img}
 								sizes="100vw"
-								objectFit="cover"
+								style={{ objectFit: 'cover' }}
 							/>
 						</div>
 					))}
@@ -119,7 +119,7 @@ const ProductDetailsSlider: FC<IProps> = (props) => {
 								alt={slide.alt}
 								src={slide.img}
 								sizes="100vw"
-								objectFit="cover"
+								style={{ objectFit: 'cover' }}
 							/>
 						</div>
 					))}

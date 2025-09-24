@@ -16,16 +16,19 @@ const AboutUsSidebar: FC<IProps> = (props) => {
 	const { className, data } = props;
 	const t = useI18n();
 
+	// Safe data access with fallback
+	const safeData = data || {};
+
 	const items: MenuProps['items'] = [
 		{
 			key: 'who-are-we',
-			label: data.whoAreWe,
+			label: safeData.whoAreWe || t('whoAreWe'),
 			children: [
 				{
 					key: HRef.introductionToTheAssociation,
 					label: (
 						<Link href={HRef.introductionToTheAssociation}>
-							{data.aboutTheAssociation}
+							{safeData.aboutTheAssociation || t('aboutTheAssociation')}
 						</Link>
 					),
 				},
@@ -33,7 +36,7 @@ const AboutUsSidebar: FC<IProps> = (props) => {
 					key: 'associationLicenseCertificate',
 					label: (
 						<Link href={HRef.certification}>
-							{data.associationLicenseCertificate}
+							{safeData.associationLicenseCertificate || t('associationLicenseCertificate')}
 						</Link>
 					),
 				},
@@ -41,7 +44,7 @@ const AboutUsSidebar: FC<IProps> = (props) => {
 					key: 'organizationalChart',
 					label: (
 						<Link href={HRef.OrganizationStructure}>
-							{data.organizationalChart}
+							{safeData.organizationalChart || t('organizationalChart')}
 						</Link>
 					),
 				},
@@ -51,19 +54,19 @@ const AboutUsSidebar: FC<IProps> = (props) => {
 			key: HRef.strategicDirections,
 			label: (
 				<Link href={HRef.strategicDirections}>
-					{data.strategicDirections}
+					{safeData.strategicDirections || t('strategicDirections')}
 				</Link>
 			),
 		},
 		{
 			key: '3',
-			label: data.boardOfDirectors,
+			label: safeData.boardOfDirectors || t('boardOfDirectors'),
 			children: [
 				{
 					key: HRef.boardOfDirectors,
 					label: (
 						<Link href={HRef.boardOfDirectors}>
-							{data.membersOfTheBoardOfDirectors}
+							{safeData.membersOfTheBoardOfDirectors || t('membersOfTheBoardOfDirectors')}
 						</Link>
 					),
 				},
@@ -71,7 +74,7 @@ const AboutUsSidebar: FC<IProps> = (props) => {
 					key: HRef.projectsCommittee,
 					label: (
 						<Link href={HRef.projectsCommittee}>
-							{data.standingCommittees}
+							{safeData.standingCommittees || t('standingCommittees')}
 						</Link>
 					),
 				},
@@ -88,25 +91,25 @@ const AboutUsSidebar: FC<IProps> = (props) => {
 		},
 		{
 			key: HRef.founders,
-			label: <Link href={HRef.founders}>{data.founders}</Link>,
+			label: <Link href={HRef.founders}>{safeData.founders || t('founders')}</Link>,
 		},
 		{
 			key: HRef.executiveManagement,
 			label: (
 				<Link href={HRef.executiveManagement}>
-					{data.executiveManagement}
+					{safeData.executiveManagement || t('executiveManagement')}
 				</Link>
 			),
 		},
 		{
 			key: HRef.financialReports,
-			label: <Link href={HRef.financialReports}>{data.reports}</Link>,
+			label: <Link href={HRef.financialReports}>{safeData.reports || t('reports')}</Link>,
 		},
 		{
 			key: HRef.councilMeetings,
 			label: (
 				<Link href={HRef.councilMeetings}>
-					{data.minutesOfAssociationMeetings}
+					{safeData.minutesOfAssociationMeetings || t('minutesOfAssociationMeetings')}
 				</Link>
 			),
 		},
@@ -114,7 +117,7 @@ const AboutUsSidebar: FC<IProps> = (props) => {
 			key: HRef.regulationsAndPolicies,
 			label: (
 				<Link href={HRef.regulationsAndPolicies}>
-					{data.regulationsAndPolicies}
+					{safeData.regulationsAndPolicies || t('regulationsAndPolicies')}
 				</Link>
 			),
 		},

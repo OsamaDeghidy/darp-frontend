@@ -12,13 +12,17 @@ const CallUsPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	
 	return (
 		<ContactUsLayout
 			title={t('pageName', { name: t('callUs') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			name={data?.mainTitle}
+			mainImage={data?.mainImage?.url}
+			header={data?.header}
+			footer={data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
@@ -26,7 +30,7 @@ const CallUsPage: NextPage = ({
 				},
 			]}
 		>
-			<CallUs data={pageProps.data} />
+			{data ? <CallUs data={data} /> : <div>Loading...</div>}
 		</ContactUsLayout>
 	);
 };
@@ -36,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			contactUsApi.endpoints?.getContactUsPage.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data || null },
 		};
 	}),
 );

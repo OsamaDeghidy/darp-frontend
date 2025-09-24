@@ -31,10 +31,15 @@ const YoutubeVideo: React.FC<IVideo> = ({
 	useEffect(() => {
 		if (url && url.trim() !== '') {
 			const match = url.match(regExp);
-			if (match && match[1]) {
+			if (match && match[1] && match[1].length === 11) { // YouTube video IDs are always 11 characters
 				const videoId = match[1];
 				setId(videoId);
+			} else {
+				console.warn('Invalid YouTube URL or video ID:', url);
+				setId('');
 			}
+		} else {
+			setId('');
 		}
 	}, [url]);
 
@@ -69,8 +74,14 @@ const YoutubeVideo: React.FC<IVideo> = ({
 	}, [isPlaying]);
 
 	// Don't render if no valid URL or video ID
-	if (!url || url.trim() === '' || !id) {
-		return null;
+	if (!url || url.trim() === '' || !id || id.length !== 11) {
+		return (
+			<div className={`darb-video ${className}`}>
+				<div className="iframe-container youtube-player min-h-[266px] flex items-center justify-center bg-gray-200">
+					<p className="text-gray-500">Invalid video URL</p>
+				</div>
+			</div>
+		);
 	}
 
 	return (
@@ -82,7 +93,7 @@ const YoutubeVideo: React.FC<IVideo> = ({
 			}
 		>
 			<div
-				className="iframe-container youtube-player min-h-[266px]"
+				className="iframe-container youtube-player min-h-[266px] relative"
 				onClick={handleClick}
 			>
 				<Image src={image} fill={true} sizes="100vw" alt={title} />

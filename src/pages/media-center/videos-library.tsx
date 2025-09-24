@@ -10,14 +10,21 @@ const VideosLibraryPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<MainLayout
 			title={t('pageName', { name: t('videoLibrary') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
-			seo={pageProps.data.seo}
+			name={pageProps.data?.mainTitle}
+			mainImage={pageProps.data?.mainImage?.url}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
+			seo={pageProps.data?.seo}
 		>
 			<VideosLibrary data={pageProps.data} />
 		</MainLayout>
@@ -29,7 +36,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			mediaCenterApi.endpoints?.getVideoLibrary.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data  || null},
 		};
 	}),
 );

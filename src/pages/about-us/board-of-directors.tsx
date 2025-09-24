@@ -12,13 +12,17 @@ const BoardOfDirectorsPage: NextPage = ({
 	pageProps,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	
 	return (
 		<AboutUsLayout
 			title={t('pageName', { name: t('boardOfDirectors') })}
-			// name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			// name={data?.mainTitle}
+			mainImage={data?.mainImage?.url}
+			header={data?.header}
+			footer={data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home} aria-label='home'>{t('home')}</Link> },
 				{
@@ -26,7 +30,7 @@ const BoardOfDirectorsPage: NextPage = ({
 				},
 			]}
 		>
-			<BoardOfDirectors data={pageProps.data} />
+			{data ? <BoardOfDirectors data={data} /> : <div>Loading...</div>}
 		</AboutUsLayout>
 	);
 };
@@ -36,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			aboutUsApi.endpoints?.getBoardOfDirectors.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data || null },
 		};
 	}),
 );

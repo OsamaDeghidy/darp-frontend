@@ -62,7 +62,7 @@ const CommentCard: React.FC<comment> = ({
 						className={''}
 						alt={`${name}`}
 						src={image}
-						objectFit="cover"
+						style={{ objectFit: 'cover' }}
 						layout="fill"
 					/>
 				</Link>

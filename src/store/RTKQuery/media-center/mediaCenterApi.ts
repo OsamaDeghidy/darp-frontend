@@ -34,4 +34,8 @@ export const mediaCenterApi = createApi({
 	}),
 });
 
-export const {} = mediaCenterApi;
+export const {
+	useGetPhotoLibraryQuery,
+	useGetVideoLibraryQuery,
+	useGetMediaMaterialsQuery,
+} = mediaCenterApi;

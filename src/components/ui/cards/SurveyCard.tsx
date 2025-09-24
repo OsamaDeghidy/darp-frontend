@@ -13,7 +13,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 dayjs.extend(localizedFormat);
 
 export interface ISurveyCardModel {
-	image: INextImageType;
+	image?: INextImageType;
 	title: string;
 	linkName: string;
 	link: string;
@@ -29,6 +29,9 @@ const SurveyCard: FC<IProps> = (props) => {
 	const { image, linkName, title, className, link, date, article } = props;
 	const t = useI18n();
 
+	// Handle empty or invalid image URLs
+	const hasValidImage = image && typeof image === 'string' && image.trim() !== '' && image !== 'undefined';
+
 	return (
 		<article
 			className={
@@ -38,13 +41,20 @@ const SurveyCard: FC<IProps> = (props) => {
 			}
 			role="article"
 		>
-			<figure>
-				<Image
-					fill
-					className={'survey-card-image'}
-					src={image}
-					alt={title}
-				/>
+			<figure className="relative w-full h-full">
+				{hasValidImage ? (
+					<Image
+						fill
+						className={'survey-card-image'}
+						src={image}
+						alt={title}
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					/>
+				) : (
+					<div className="survey-card-image bg-gray-200 flex items-center justify-center">
+						<span className="text-gray-500 text-sm">No Image</span>
+					</div>
+				)}
 				<figcaption className="sr-only">{title}</figcaption>
 			</figure>
 			<div className={'survey-card-content'}>

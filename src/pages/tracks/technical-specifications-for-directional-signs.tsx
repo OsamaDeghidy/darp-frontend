@@ -14,14 +14,21 @@ const TechnicalSpecificationsForDirectionalSignsPage: NextPage = ({
 																	  pageProps,
 																  }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<TracksLayout
 			title={t('pageName', {
 				name: t('technicalSpecificationsForDirectionalSigns'),
 			})}
 			name={t('technicalSpecificationsForDirectionalSigns')}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
@@ -29,7 +36,7 @@ const TechnicalSpecificationsForDirectionalSignsPage: NextPage = ({
 				},
 			]}
 		>
-			<TechnicalSpecificationsForDirectionalSigns data={pageProps.technicalSpecifications.data} />
+			<TechnicalSpecificationsForDirectionalSigns data={pageProps.technicalSpecifications?.data} />
 		</TracksLayout>
 	);
 };
@@ -43,8 +50,8 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 		);
 		return {
 			props: {
-				data: data.data?.data,
-				technicalSpecifications: technicalSpecifications.data?.data,
+				data: data.data?.data || null,
+				technicalSpecifications: technicalSpecifications.data?.data || null,
 			},
 		};
 	}),

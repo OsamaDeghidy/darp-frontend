@@ -14,11 +14,18 @@ const EditProfilePage: NextPage = ({
 	const t = useI18n();
 	const [profileImage, setProfileImage] = useState<string>();
 	const [coverImage, setCoverImage] = useState<string>();
-	return (
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<ProfileLayout
 			title={t('pageName', { name: t('editProfile') })}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
 			data={pageProps.myProfileData}
 			isEditProfile={true}
 			onChangeProfileImage={(url) => {
@@ -41,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = withAuth(
 			profileApi.endpoints?.getMyProfile.initiate(),
 		);
 		return {
-			props: { data: page.data?.data  , myProfileData: myProfileData.data},
+			props: { data: page.data?.data   || null, myProfileData: myProfileData.data},
 		};
 	}),
 );

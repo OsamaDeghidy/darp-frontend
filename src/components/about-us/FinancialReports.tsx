@@ -5,12 +5,31 @@ import { IFinancialReportsModel } from '@/src/models/about-us';
 import { HRef } from '@/src/utilities/href';
 
 interface IProps {
-	data: IFinancialReportsModel;
+	data: IFinancialReportsModel | null;
 }
 
 const FinancialReports: FC<IProps> = (props) => {
 	const { data } = props;
 	const t = useI18n();
+
+	// Add null check for data and financialReportsList
+	if (!data || !data.financialReportsList) {
+		return (
+			<section>
+				<h1 className={'mb-[20px] c_004053 f-32-700'}>
+					{t('financialReports')}
+				</h1>
+				<div className="text-center py-8">
+					<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+						<p className="text-yellow-800 font-medium mb-2">⚠️ البيانات غير متاحة حالياً</p>
+						<p className="text-yellow-700 text-sm">
+							يبدو أن هناك مشكلة في الخادم. يرجى المحاولة مرة أخرى لاحقاً أو التواصل مع فريق الدعم الفني.
+						</p>
+					</div>
+				</div>
+			</section>
+		);
+	}
 
 	const financialReports = data.financialReportsList.filter(
 		(item) => item.type === 'Financial Reports',
@@ -33,11 +52,11 @@ const FinancialReports: FC<IProps> = (props) => {
 					<ReportCard
 						className={'xl:col-span-4 lg:col-span-6 col-span-12'}
 						key={index}
-						image={item.image.url}
+						image={item.image?.url || ''}
 						/*
 												date={item.date}
 						*/
-						title={item.title}
+						title={item.title || ''}
 						href={HRef.financialReports + '/' + item.id}
 					/>
 				))}
@@ -50,11 +69,11 @@ const FinancialReports: FC<IProps> = (props) => {
 					<ReportCard
 						className={'xl:col-span-4 lg:col-span-6 col-span-12'}
 						key={index}
-						image={item.image.url}
+						image={item.image?.url || ''}
 						/*
 												date={item.date}
 						*/
-						title={item.title}
+						title={item.title || ''}
 						href={HRef.financialReports + '/' + item.id}
 					/>
 				))}
@@ -67,11 +86,11 @@ const FinancialReports: FC<IProps> = (props) => {
 					<ReportCard
 						className={'xl:col-span-4 lg:col-span-6 col-span-12'}
 						key={index}
-						image={item.image.url}
+						image={item.image?.url || ''}
 						/*
 												date={item.date}
 						*/
-						title={item.title}
+						title={item.title || ''}
 						href={HRef.financialReports + '/' + item.id}
 					/>
 				))}

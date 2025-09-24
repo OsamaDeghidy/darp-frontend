@@ -16,10 +16,10 @@ const Certification: NextPage = ({
 	return (
 		<AboutUsLayout
 			title={t('pageName', { name: t('strategicDirections') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			name={pageProps.data?.mainTitle}
+			mainImage={pageProps.data?.mainImage?.url}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home}>{t('home')}</Link> },
 				{
@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			aboutUsApi.endpoints?.getLicenseCertificate.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data  || null},
 		};
 	}),
 );

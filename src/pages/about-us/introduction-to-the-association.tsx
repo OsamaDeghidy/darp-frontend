@@ -13,13 +13,23 @@ const IntroductionToTheAssociationPage: NextPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const t = useI18n();
 
-	return (
+	// Debug: Log the pageProps to see what we're receiving
+	console.log('IntroductionToTheAssociationPage pageProps:', pageProps);
+	console.log('IntroductionToTheAssociationPage data:', pageProps.data);
+	
+	// Safe data access with fallback
+	const data = pageProps.data || null;
+	const page = pageProps.page || null;
+	const mainNews = pageProps.mainNews || null;
+	const latestNews = pageProps.latestNews || null;
+	const membershipList = pageProps.membershipList || null;
+return (
 		<AboutUsLayout
 			title={t('pageName', { name: t('introductionToTheAssociation') })}
-			name={pageProps.data.mainTitle}
-			mainImage={pageProps.data.mainImage?.url}
-			header={pageProps.data.header}
-			footer={pageProps.data.footer}
+			name={pageProps.data?.mainTitle}
+			mainImage={pageProps.data?.mainImage?.url}
+			header={pageProps.data?.header}
+			footer={pageProps.data?.footer}
 			breadcrumb={[
 				{ title: <Link href={HRef.home} aria-label='home'>{t('home')}</Link> },
 				{
@@ -33,12 +43,32 @@ const IntroductionToTheAssociationPage: NextPage = ({
 };
 export const getServerSideProps: GetServerSideProps = withEveryone(
 	wrapper.getServerSideProps((store) => async (context) => {
-		const data = await store.dispatch(
-			aboutUsApi.endpoints?.getAboutOrganization.initiate(),
-		);
-		return {
-			props: { data: data.data?.data },
-		};
+		console.log('getServerSideProps: Starting to fetch about organization data');
+		try {
+			const data = await store.dispatch(
+				aboutUsApi.endpoints?.getAboutOrganization.initiate(),
+			);
+			console.log('getServerSideProps: Raw API response:', data);
+			console.log('getServerSideProps: API response status:', data.status);
+			console.log('getServerSideProps: API response error:', data.error);
+			console.log('getServerSideProps: Processed data:', data.data?.data);
+			
+			if (data.error) {
+				console.error('getServerSideProps: API Error:', data.error);
+				return {
+					props: { data: null },
+				};
+			}
+			
+			return {
+				props: { data: data.data?.data || null },
+			};
+		} catch (error) {
+			console.error('getServerSideProps: Exception:', error);
+			return {
+				props: { data: null },
+			};
+		}
 	}),
 );
 export default IntroductionToTheAssociationPage;

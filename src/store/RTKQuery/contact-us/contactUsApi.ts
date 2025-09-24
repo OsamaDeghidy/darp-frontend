@@ -98,7 +98,13 @@ export const contactUsApi = createApi({
 });
 
 export const {
+	useGetContactUsPageQuery,
 	useSendContactUsMutation,
+	useGetSurveyPageQuery,
+	useGetComplaintsAndSuggestionsQuery,
 	useSendComplaintsAndSuggestionsMutation,
+	useGetVolunteeringQuery,
 	useSendVolunteeringMutation,
+	useGetJobsPageQuery,
+	useGetContributePageQuery,
 } = contactUsApi;

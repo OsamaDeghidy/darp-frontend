@@ -16,9 +16,9 @@ const ImportanceOfTracks: NextPage = ({
 	const t = useI18n();
 	return (
 		<TracksLayout
-			mainImage={pageProps.data.data.mainImage?.url}
-			header={pageProps.data.data.header}
-			footer={pageProps.data.data.footer}
+			mainImage={pageProps.data?.data.mainImage?.url}
+			header={pageProps.data?.data.header}
+			footer={pageProps.data?.data.footer}
 			title={t('pageName', {
 				name: t('importanceOfTracks'),
 			})}
@@ -30,9 +30,9 @@ const ImportanceOfTracks: NextPage = ({
 				},
 			]}
 		>
-			<SaudiTrackAccreditationStandards data={pageProps.data.data} />
+			<SaudiTrackAccreditationStandards data={pageProps.data?.data} />
 			<TechnicalSpecificationsForDirectionalSigns
-				data={pageProps.data.data}
+				data={pageProps.data?.data}
 			/>
 		</TracksLayout>
 	);

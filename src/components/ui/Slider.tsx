@@ -32,7 +32,7 @@ export const MainSlider: React.FC<ISlider> = (props) => {
 							alt={slide.title}
 							src={slide.image.url}
 							sizes="100vw"
-							objectFit="cover"
+							style={{ objectFit: 'cover' }}
 						/>
 						<figcaption className="sr-only">
 							{slide.title}
@@ -80,7 +80,7 @@ export const SliderWithThumb: React.FC<ISlider> = ({
 								alt={slide.title}
 								src={slide.image.url}
 								sizes="100vw"
-								objectFit="cover"
+								style={{ objectFit: 'cover' }}
 							/>
 						</div>
 					))}
@@ -102,7 +102,7 @@ export const SliderWithThumb: React.FC<ISlider> = ({
 								alt={slide.title}
 								src={slide.image.url}
 								sizes="100vw"
-								objectFit="cover"
+								style={{ objectFit: 'cover' }}
 							/>
 						</div>
 					))}

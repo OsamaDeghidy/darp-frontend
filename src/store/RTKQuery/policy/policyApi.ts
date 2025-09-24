@@ -17,4 +17,4 @@ export const policyApi = createApi({
 	}),
 });
 
-export const {} = policyApi;
+export const { useGetPolicyPageQuery } = policyApi;

@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = withEveryone(
 			aboutUsApi.endpoints?.getOrganizationStructure.initiate(),
 		);
 		return {
-			props: { data: data.data?.data },
+			props: { data: data.data?.data || null },
 		};
 	}),
 );

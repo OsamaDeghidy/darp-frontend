@@ -162,7 +162,7 @@ const TrackDetails: FC<IProps> = (props) => {
 								src={data.qrCodeUrl}
 								width={100}
 								height={100}
-								objectFit="contain"
+								style={{ objectFit: 'contain' }}
 							/>
 						)}
 					</div>
@@ -175,7 +175,7 @@ const TrackDetails: FC<IProps> = (props) => {
 								className="py-[10px] px-[5px]"
 								alt="darbImage"
 								src={darbImage}
-								objectFit="contain"
+								style={{ objectFit: 'contain' }}
 								layout="fill"
 							/>
 						) : data.createdBy?.profileImage ? (
@@ -187,7 +187,7 @@ const TrackDetails: FC<IProps> = (props) => {
 											data.createdBy.name || 'User Image'
 										}
 										src={data.createdBy.profileImage}
-										objectFit="contain"
+										style={{ objectFit: 'contain' }}
 										layout="fill"
 									/>
 								</Link>

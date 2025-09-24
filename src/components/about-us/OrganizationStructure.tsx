@@ -3,17 +3,39 @@ import { useI18n } from '@/src/locales';
 import { IOrganizationStructureModel } from '@/src/models/about-us';
 
 interface IProps {
-	data: IOrganizationStructureModel;
+	data: IOrganizationStructureModel | null;
 	isMobile?: boolean;
 }
 
 const OrganizationStructure: FC<IProps> = ({ data, isMobile = false }) => {
 	const t = useI18n();
+	
+	// Add null check for data
+	if (!data || !data.organizationStructureItems) {
+		return (
+			<section>
+				{!isMobile && (
+					<h1 className={'mb-[20px] c_004053 f-32-700'}>
+						{t('organizationalChart')}
+					</h1>
+				)}
+				<div className="text-center py-8">
+					<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+						<p className="text-yellow-800 font-medium mb-2">⚠️ البيانات غير متاحة حالياً</p>
+						<p className="text-yellow-700 text-sm">
+							يبدو أن هناك مشكلة في الخادم. يرجى المحاولة مرة أخرى لاحقاً أو التواصل مع فريق الدعم الفني.
+						</p>
+					</div>
+				</div>
+			</section>
+		);
+	}
+	
 	return (
 		<section>
 			{!isMobile && (
 				<h1 className={'mb-[20px] c_004053 f-32-700'}>
-					{data.mainTitle}
+					{data.mainTitle || t('organizationalChart')}
 				</h1>
 			)}
 			{data.organizationStructureItems[0] && (

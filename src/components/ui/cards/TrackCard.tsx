@@ -174,7 +174,7 @@ const TrackCard: FC<IProps> = (props) => {
 									className="py-[10px] px-[5px]"
 									alt="darbImage"
 									src={darbImage}
-									objectFit="contain"
+									style={{ objectFit: 'contain' }}
 									layout="fill"
 								/>
 							) : data.createdBy?.profileImage ? (
@@ -190,7 +190,7 @@ const TrackCard: FC<IProps> = (props) => {
 												'User Image'
 											}
 											src={data.createdBy.profileImage}
-											objectFit="contain"
+											style={{ objectFit: 'contain' }}
 											layout="fill"
 										/>
 									</Link>
